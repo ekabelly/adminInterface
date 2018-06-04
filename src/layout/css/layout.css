@@ -1,6 +1,5 @@
 * {
   padding: 0 !important;
-  margin: 0 !important;
 }
 
 .App {
@@ -44,19 +43,28 @@
   font-size: 3rem;
 }
 
+.loginPanel {
+  font-size: 2rem;
+}
+
+.verticalMiddle {
+  margin-top: 70px; 
+}
+
 nav {
   height: 1050px;
   background-color: black;
+}
+
+.mainNav {
+  background: #222;
+  height: 175px;
 }
 
 .kaftor {
   width: 90%;
   height: 8rem;
   font-size: 3rem;
-}
-
-.hidden {
-  display: none;
 }
 
 .App-header {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Nav from './nav';
+import Header from './header';
 import './css/layout.css';
 
 export default class Layout extends Component {
@@ -25,10 +26,9 @@ export default class Layout extends Component {
 		return (<div>
 		<main className="container-fluid">
 	        <div className={'col-md-10 col-sm-10 padding ' + this.buildClass()}>
-		        <header className="App-header col-md-12 container-fluid">
-		          <div> 
-		          </div>
-		        </header>
+		        <div className="App-header col-md-12 container-fluid">
+		          <Header /> 
+		        </div>
 		        <div className="col-md-12 col-sm-12 col-xs-12">
 		          <p className="App-intro">
 		          	To get started, edit <code>src/App.js</code> and save to reload.

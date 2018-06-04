@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LogoContainer from './logocontainer';
-import hamburger from '../resources/hamburger.png';
 
 export default class Nav extends Component {
 	constructor(props){
