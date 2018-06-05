@@ -35,7 +35,7 @@ export default class Nav extends Component {
 				return <LogoContainer />;
 			}
 			return (<div>
-						<div className="col-xs-3">
+						<div className="col-xs-3 padding">
 							{this.hamburgerComp()}
 						</div>
 						<div className="col-xs-9 container-fluid padding">
@@ -50,7 +50,7 @@ export default class Nav extends Component {
 		if (!this.state.showNav) {
 			return ' col-xs-1';
 		}
-		return ' col-xs-4 container-fluid';
+		return ' col-xs-5 container-fluid';
 	}
 
 	showNav(){
@@ -58,9 +58,16 @@ export default class Nav extends Component {
 		this.setState({showNav:!this.state.showNav});
 	}
 
+	location(){
+		if (this.props.location === 'events') {
+			return '';
+		}
+		return 'hidden';
+	}
+
 	render(){
-		return (<div>
-			<nav className={'col-md-2 col-sm-2 nav padding' + this.buildClass()}>
+		return (<div className={this.location()}>
+			<nav className={'col-md-2 col-sm-2 nav padding longNav' + this.buildClass()}>
 	           {this.navHandler()}
 	        </nav>
 		</div>);

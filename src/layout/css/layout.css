@@ -1,7 +1,3 @@
-* {
-  padding: 0 !important;
-}
-
 .App {
   text-align: center;
 }
@@ -51,17 +47,33 @@
   margin-top: 70px; 
 }
 
-nav {
+.longNav {
   height: 1050px;
   background-color: black;
 }
 
-.mainNav {
-  background: #222;
-  height: 175px;
+.navAnchor {
+  padding:7px !important;
+  border:0.1px solid grey;
+  box-sizing: border-box;
 }
 
-.kaftor {
+.navbar-nav li {
+  background-color: black;
+}
+
+.navbar-nav li:hover {
+  background-color: grey;
+}
+
+.mainNav {
+  font-size: 2.5rem;
+  margin-top: 30px;
+  overflow: hidden !important;
+  background-color: #222;
+}
+
+.newEventBtn {
   width: 90%;
   height: 8rem;
   font-size: 3rem;
@@ -82,7 +94,17 @@ nav {
   font-size: large;
 }
 
+.hidden {
+  display: none;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 768px) {
+  .newEventBtn {
+    font-size: 3.5vw;
+  }
 }
