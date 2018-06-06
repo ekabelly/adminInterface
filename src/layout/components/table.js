@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Select from './select';
+import {limit} from '../layout.config';
 
 export default class Table extends Component {
 	createTbody(){
 		if (this.props.data.length >= 1) {
-			console.log('render');
+			console.log('render', this.props.page);
 			return this.props.data.map((x, i)=>{
-				if (i > 10) return null;
+				if (i < (this.props.page-1)*limit || i > this.props.page*limit) return null;
 			return (<tr key={i}>
 				<td>{Object.values(x)[0]}</td>
 				<td>{Object.values(x)[1]}</td>

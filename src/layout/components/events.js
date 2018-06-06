@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/events.css';
+import {limit} from '../layout.config';
 import axios from 'axios';
 import Table from './table';
 import Pagination from './pagination';
@@ -9,13 +10,14 @@ export default class Evens extends React.Component {
 		super(props);
 		this.state ={
 			data: [],
-			page:1
+			page:1,
+			lastPage:1
 		}
 	}
 
 	componentDidMount(){
 		axios.get('https://jsonplaceholder.typicode.com/albums').then(res=>
-			this.setState({data:res.data})).catch(e=>console.error(e));
+			this.setState({data:res.data, lastPage:Math.ceil(res.data.length/limit)})).catch(e=>console.error(e));
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
@@ -30,14 +32,16 @@ export default class Evens extends React.Component {
 
 	dataHandler(){
 		if (this.state.data.length >=1) {
-			return <Table data={this.state.data} />;
+			return <Table page={this.state.page} data={this.state.data} />;
 		}
 		return null;
 	}
 
 	changePage(change){
-		console.log(change);
-		if (this.state.page === 1 && change < 1) {
+		if (this.state.page === 1 && change < 1 ) {
+			return;
+		}
+		if (this.state.page === this.state.lastPage && change > this.state.lastPage) {
 			return;
 		}
 		this.setState({page:change});
@@ -50,7 +54,7 @@ export default class Evens extends React.Component {
 					{this.dataHandler()}
 			</div>
 			<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-					<Pagination changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.state.data.length}  />
+					<Pagination lastPage={this.state.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.state.data.length}  />
 			</div>
 		</div>
 		</div>);
