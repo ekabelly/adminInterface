@@ -1,7 +1,41 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Select from './select';
 
 export default class Table extends Component {
+	constructor(props){
+		super(props);
+		this.state ={
+			data: []
+		}
+	}
+
+	componentDidMount(){
+		axios.get('https://jsonplaceholder.typicode.com/comments').then(res=>
+			this.setState({data:res.data})).catch(e=>console.error(e));
+	}
+
+	shouldComponentUpdate(nextProps, nextState){
+		if (this.state.data.length !== nextState.data.length) {
+			return true;
+		}
+		return false;
+	}
+
+	createTbody(){
+		console.log('render');
+		if (this.state.data.length >= 1) {
+			return this.state.data.map((x, i)=>(<tr key={i}>
+				<td>{Object.values(x)[0]}</td>
+				<td>{Object.values(x)[1]}</td>
+				<td>{Object.values(x)[2]}</td>
+				<td>{Object.values(x)[3]}</td>
+				<td>{Object.values(x)[4]}</td>
+			</tr>));
+		}
+		return null;	
+	}
+
 	render(){
 		return (<div className="padding">
 
@@ -23,27 +57,7 @@ export default class Table extends Component {
 					</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td> כותרת</td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-				</tr>
-				<tr>
-					<td> כותרת</td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-				</tr>
-				<tr>
-					<td> כותרת</td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-				</tr>
+				{this.createTbody()}
 				</tbody>
 			</table>
 

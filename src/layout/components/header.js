@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 export default class Header extends Component {
-	constructor(props){
-		super(props);
-	}
-
 	myRouter(path){
 		this.props.changeLocation(path);
 	}
