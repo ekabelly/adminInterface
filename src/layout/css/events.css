@@ -42,3 +42,7 @@ table {
 	height: 875px;
 	overflow-y: scroll;
 }
+
+.pointer {
+	cursor: pointer;
+}

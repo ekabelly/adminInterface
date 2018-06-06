@@ -19,7 +19,13 @@ export default class Evens extends React.Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
-		return this.state.data.length !== nextState.data.length;
+		if (this.state.data.length !== nextState.data.length) {
+			return true;
+		}
+		if (nextState.page !== this.state.page) {
+			return true
+		}
+		return false;
 	}
 
 	dataHandler(){
@@ -29,6 +35,14 @@ export default class Evens extends React.Component {
 		return null;
 	}
 
+	changePage(change){
+		console.log(change);
+		if (this.state.page === 1 && change < 1) {
+			return;
+		}
+		this.setState({page:change});
+	}
+
 	render(){
 		return (<div className="eventsContainer" id="appHeight"><br/>
 		<div className="container-fluid tableContainer">
@@ -36,7 +50,7 @@ export default class Evens extends React.Component {
 					{this.dataHandler()}
 			</div>
 			<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-					<Pagination  />
+					<Pagination changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.state.data.length}  />
 			</div>
 		</div>
 		</div>);
