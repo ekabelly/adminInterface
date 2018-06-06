@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LogoContainer from './logocontainer';
+import Hamburger from './hamburger';
 
 export default class Nav extends Component {
 	constructor(props){
@@ -23,27 +24,25 @@ export default class Nav extends Component {
 		return this.setState({showNav:true});
 	}
 
-	hamburgerComp(){
-		return (<div className="padding hamburgerContainer" onClick={()=>this.showNav()}>
-				<span className="glyphicon glyphicon-menu-hamburger hamburger" aria-hidden="true"></span>
-			</div>)
-	}
-
 	navHandler(){
 		if (this.state.showNav) {
 			if (window.innerWidth > 768) {
 				return <LogoContainer />;
 			}
-			return (<div>
-						<div className="col-xs-3 padding">
-							{this.hamburgerComp()}
-						</div>
-						<div className="col-xs-9 container-fluid padding">
-							<LogoContainer />
-						</div>
-					</div>)
+			return this.hamburgerPlusNav();
 		}
-		return this.hamburgerComp();
+		return <Hamburger showNav={()=>this.showNav()} />;
+	}
+
+	hamburgerPlusNav(){
+		return (<div>
+					<div className="col-xs-3 padding">
+						<Hamburger showNav={()=>this.showNav()} />
+					</div>
+					<div className="col-xs-9 container-fluid padding">
+						<LogoContainer />
+					</div>
+				</div>);
 	}
 
 	buildClass(){

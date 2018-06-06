@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-export default class Hamburger extends Component {
-	render(){
-		return (<div>
-			<div className="col-md-1 col-xs-1">
-			</div> 
-		</div>);
-	}
-}
+export default props=>(<div className="padding hamburgerContainer" onClick={()=>props.showNav()}>
+		<span className="glyphicon glyphicon-menu-hamburger hamburger" aria-hidden="true"></span>
+	</div>);
