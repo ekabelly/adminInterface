@@ -20,7 +20,7 @@
 
 .hamburgerContainer {
   background-color: grey;
-  height: 1050px;
+  height: auto;
 }
 
 .center {
@@ -48,7 +48,8 @@
 }
 
 .longNav {
-  height: 1050px;
+  height: auto;
+  min-height: 1050px;
   background-color: black;
 }
 

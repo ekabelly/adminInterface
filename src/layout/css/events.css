@@ -15,6 +15,7 @@
 
 tbody td {
 	border:solid black 1px !important;
+    word-wrap: break-word;
 }
 
 thead td {
@@ -24,10 +25,12 @@ thead td {
 table {
 	border-spacing: 0 10px;
 	border-collapse: inherit;
+	table-layout: fixed;
 }
 
 .tableContainer {
 	padding: 20px !important;
+	max-width: 100% !important;
 }
 
 .selectWidth {
@@ -36,5 +39,6 @@ table {
 
 .eventsContainer {
 	background-color:#D3D3D3;
-	height:875px;
+	height: 875px;
+	overflow-y: scroll;
 }
