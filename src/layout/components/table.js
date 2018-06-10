@@ -5,10 +5,9 @@ import {limit} from '../layout.config';
 export default class Table extends Component {
 	createTbody(){
 		if (this.props.data.length >= 1) {
-			console.log('render', this.props.page);
 			return this.props.data.map((x, i)=>{
-				if (i < (this.props.page-1)*limit || i > this.props.page*limit) return null;
-			return (<tr key={i}>
+				if (i-1 < (this.props.page-1)*limit || i > this.props.page*limit) return null;
+			return (<tr onClick={()=>this.props.changeLocation(x, 'itemDetails')} key={i}>
 				<td>{Object.values(x)[0]}</td>
 				<td>{Object.values(x)[1]}</td>
 				<td>{Object.values(x)[2]}</td>
@@ -22,7 +21,6 @@ export default class Table extends Component {
 
 	render(){
 		return (<div className="padding">
-
 			<table className="col-xs-12 table padding">
 				<thead>
 					<tr>

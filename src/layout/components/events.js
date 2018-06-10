@@ -1,17 +1,20 @@
 import React from 'react';
 import '../css/events.css';
-import {limit} from '../layout.config';
 import axios from 'axios';
-import Table from './table';
-import Pagination from './pagination';
+import {limit} from '../layout.config';
+import EventsTableWrapper from './eventstablewrapper';
+import ItemDetailsWrapper from './itemdetailswrapper';
 
 export default class Evens extends React.Component {
 	constructor(props){
 		super(props);
-		this.state ={
+		this.state = {
 			data: [],
-			page:1,
-			lastPage:1
+			lastPage:1,
+			location:{
+				item:{},
+				locationName:'events'
+			}
 		}
 	}
 
@@ -20,43 +23,27 @@ export default class Evens extends React.Component {
 			this.setState({data:res.data, lastPage:Math.ceil(res.data.length/limit)})).catch(e=>console.error(e));
 	}
 
-	shouldComponentUpdate(nextProps, nextState){
-		if (this.state.data.length !== nextState.data.length) {
-			return true;
-		}
-		if (nextState.page !== this.state.page) {
-			return true
-		}
-		return false;
-	}
-
-	dataHandler(){
-		if (this.state.data.length >=1) {
-			return <Table page={this.state.page} data={this.state.data} />;
+	eventsTableWrapper(){
+		if (this.state.data.length >= 1) {
+			return <EventsTableWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} data={this.state.data} lastPage={this.state.lastPage} />;
 		}
 		return null;
 	}
 
-	changePage(change){
-		if (this.state.page === 1 && change < 1 ) {
-			return;
+	locationHandler(item, locationName){
+		if (this.state.location.locationName === 'events'){
+			return this.eventsTableWrapper();
 		}
-		if (this.state.page === this.state.lastPage && change > this.state.lastPage) {
-			return;
-		}
-		this.setState({page:change});
+		return <ItemDetailsWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} x={this.state.location.item} />;
+	}
+
+	changeLocation(item, locationName){
+		this.setState({location:{item, locationName}});
 	}
 
 	render(){
 		return (<div className="eventsContainer" id="appHeight"><br/>
-		<div className="container-fluid tableContainer">
-			<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-					{this.dataHandler()}
-			</div>
-			<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-					<Pagination lastPage={this.state.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.state.data.length}  />
-			</div>
-		</div>
+			{this.locationHandler()}
 		</div>);
 	}
 }

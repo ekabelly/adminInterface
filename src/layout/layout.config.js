@@ -1,3 +1,3 @@
 module.exports = {
-	limit:4
+	limit:6
 }
