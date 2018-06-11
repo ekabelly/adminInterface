@@ -34,7 +34,7 @@ export default class Evens extends React.Component {
 		if (this.state.location.locationName === 'events'){
 			return this.eventsTableWrapper();
 		}
-		return <ItemDetailsWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} x={this.state.location.item} />;
+		return <ItemDetailsWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} data={this.state.location.item} />;
 	}
 
 	changeLocation(item, locationName){
