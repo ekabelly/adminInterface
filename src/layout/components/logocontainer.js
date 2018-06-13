@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from '../../resources/logo.svg';
 
 export default()=>{
@@ -15,10 +15,10 @@ export default()=>{
 
         	<ul className="nav navbar  nav-pills nav-stacked sideNav">
         		<li>
-        			<a href="#"> ארכיון אירועים </a>
+        			<a className="pointer"> ארכיון אירועים </a>
         		</li>
         		<li>
-        			<a href="#"> אירועים פעילים </a>
+        			<a className="pointer"> אירועים פעילים </a>
         		</li>
         	</ul>
         </div> 

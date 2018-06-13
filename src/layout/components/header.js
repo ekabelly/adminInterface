@@ -10,7 +10,7 @@ export default class Header extends Component {
 					<div className="col-md-1 col-sm-1 col-xs-1 ">
 					</div>
 					<div className="col-md-2 col-xs-8 col-sm-4 container-fluid padding loginPanel">
-						<a className="col-md-6 col-sm-6 col-xs-6 verticalMiddle btn btn-default padding" href="#">
+						<a className="col-md-6 col-sm-6 col-xs-6 verticalMiddle btn btn-default padding pointer">
 						התנתק/י
 						</a>
 						<p className="col-md-6 col-sm-6 col-xs-6 verticalMiddle padding">שלום, עידו</p>
@@ -21,7 +21,7 @@ export default class Header extends Component {
 								<div className="">
 									<ul className="nav navbar-nav navbar" >
 										<li role="presentation">
-				        					<a href="#" className="navAnchor"> הגדרות </a>
+				        					<a className="navAnchor pointer"> הגדרות </a>
 						        		</li>
 						        		<li role="presentation">
 						        			<a href="#volunteers" className="navAnchor"> מתנדבים </a>

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Select from './select';
+import Search from './search';
 import {limit} from '../layout.config';
 
 export default class Table extends Component {
 	createTbody(){
 		if (this.props.data.length >= 1) {
 			return this.props.data.map((x, i)=>{
-				if (i-1 < (this.props.page-1)*limit || i > this.props.page*limit) return null;
-			return (<tr onClick={()=>this.props.changeLocation(x, 'itemDetails')} key={i}>
+				if (i < (this.props.page-1)*limit || i > this.props.page*limit) return null;
+			return (<tr className="pointer" onClick={()=>this.props.changeLocation(x, 'itemDetails')} key={i}>
 				<td>{Object.values(x)[0]}</td>
 				<td>{Object.values(x)[1]}</td>
 				<td>{Object.values(x)[2]}</td>
@@ -21,13 +22,13 @@ export default class Table extends Component {
 
 	render(){
 		return (<div className="padding">
-			<table className="col-xs-12 table padding">
+			<table className="col-xs-12 table padding table-hover">
 				<thead>
 					<tr>
 						<td><Select extraClass="selectWidth" /> </td>
 						<td><Select extraClass="selectWidth" /> </td>
 						<td><Select extraClass="selectWidth" /></td>
-						<td> </td>
+						<td><Search initSearch={searchTerm=>this.props.initSearch(searchTerm)} searchTerm={this.props.searchTerm} /> </td>
 						<td> </td>
 					</tr>
 					<tr>
@@ -39,7 +40,7 @@ export default class Table extends Component {
 					</tr>
 				</thead>
 				<tbody>
-				{this.createTbody()}
+					{this.createTbody()}
 				</tbody>
 			</table>
 

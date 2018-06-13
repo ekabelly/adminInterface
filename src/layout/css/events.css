@@ -51,22 +51,38 @@ table {
 	background-color: white;
 }
 
+.DetailsWrapper {
+	background-color: white;
+}
+
 .activeTab {
 	background-color: white;
 }
 
 .tab {
-	height: 100px;
-	font-size: 4rem;
+	height: 80px;
+	font-size: 2rem;
+	color: red;
+	z-index: 100;
 }
 
-@media screen and (min-width: 768px) {
-  .showOnXs {
-  	display: none;
-  }
+.hoverBlack:hover {
+	background-color: grey;
 }
+
+.searchInput {
+	text-align: right !important;
+}
+
+.hideOnMd {
+  	display: none;
+ }
 
 @media screen and (max-width: 768px) {
+.hideOnMd {
+  	display: inline;
+  }
+
   .hideOnXs {
   	display: none;
   }

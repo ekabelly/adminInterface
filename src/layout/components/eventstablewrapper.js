@@ -6,35 +6,16 @@ export default class EventsTableWrapper extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			data:this.props.data,
-			lastPage:this.props.lastPage,
-			page:1
+			page:1,
+			searchTerm:''
 		}
-	}
-
-	shouldComponentUpdate(nextProps, nextState){
-		if (this.state.data.length !== nextState.data.length) {
-			return true;
-		}
-		if (nextState.page !== this.state.page) {
-			return true
-		}
-		return false;
-	}
-
-	dataHandler(){
-		if (this.state.data.length >=1) {
-			return <Table changeLocation={(item, locationName)=>
-				this.props.changeLocation(item, locationName)} page={this.state.page} data={this.state.data} />;
-		}
-		return null;
 	}
 
 	changePage(change){
 		if (this.state.page === 1 && change < 1 ) {
 			return;
 		}
-		if (this.state.page === this.state.lastPage && change > this.state.lastPage) {
+		if (this.state.page === this.props.lastPage && change > this.props.lastPage) {
 			return;
 		}
 		this.setState({page:change});
@@ -43,13 +24,15 @@ export default class EventsTableWrapper extends React.Component {
 	render(){
 		return (<div className="container-fluid tableContainer">
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-						<Pagination lastPage={this.state.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.state.data.length}  />
+						<Pagination lastPage={this.props.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.props.data.length}  />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-							{this.dataHandler()}
+							<Table changeLocation={(item, locationName)=>
+								this.props.changeLocation(item, locationName)} page={this.state.page} data={this.props.data} initSearch={searchTerm=>
+								this.props.initSearch(searchTerm)} searchTerm={this.state.searchTerm} />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-						<Pagination lastPage={this.state.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.state.data.length}  />
+						<Pagination lastPage={this.props.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.props.data.length}  />
 					</div>
 				</div>)
 	}
