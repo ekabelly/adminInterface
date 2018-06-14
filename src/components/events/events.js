@@ -1,9 +1,9 @@
 import React from 'react';
-import '../css/events.css';
+import './events.css';
 import axios from 'axios';
-import {limit} from '../layout.config';
-import EventsTableWrapper from './eventstablewrapper';
-import ItemDetailsWrapper from './itemdetailswrapper';
+import {limit} from '../../layout/layout.config';
+import EventsTableWrapper from '../table/eventstablewrapper';
+import ItemDetailsWrapper from '../details/itemdetailswrapper';
 
 export default class Evens extends React.Component {
 	constructor(props){

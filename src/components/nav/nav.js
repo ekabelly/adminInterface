@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import LogoContainer from './logocontainer';
-import Hamburger from './hamburger';
+import LogoContainer from './components/logocontainer';
+import Hamburger from './components/hamburger';
 
 export default class Nav extends Component {
 	constructor(props){

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Select from './select';
 import Search from './search';
-import {limit} from '../layout.config';
+import {limit} from '../../../layout/layout.config';
 
 export default class Table extends Component {
 	createTbody(){
@@ -28,7 +28,7 @@ export default class Table extends Component {
 						<td><Select extraClass="selectWidth" /> </td>
 						<td><Select extraClass="selectWidth" /> </td>
 						<td><Select extraClass="selectWidth" /></td>
-						<td><Search initSearch={searchTerm=>this.props.initSearch(searchTerm)} searchTerm={this.props.searchTerm} /> </td>
+						<td><Search initSearch={searchTerm=>this.props.initSearch(searchTerm)} /> </td>
 						<td> </td>
 					</tr>
 					<tr>

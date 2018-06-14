@@ -4,7 +4,7 @@ export default class Search extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			searchTerm: this.props.searchTerm || ''
+			searchTerm:''
 		}
 	}
 
@@ -13,6 +13,6 @@ export default class Search extends Component {
 	}
 
 	render(){
-		return <input type="Search" onKeyUp={e=>this.initSearch(e.target.value)} placeholder="חיפוש" className="form-control searchInput" />;
+		return <input type="Search" value={this.state.searchTerm} onChange={e=>this.initSearch(e.target.value)} placeholder="חיפוש" className="form-control searchInput" />;
 	}
 }

@@ -1,13 +1,12 @@
 import React from 'react';
-import Table from './table';
-import Pagination from './pagination';
+import Table from './components/table';
+import Pagination from './components/pagination';
 
 export default class EventsTableWrapper extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			page:1,
-			searchTerm:''
+			page:1
 		}
 	}
 
@@ -29,7 +28,7 @@ export default class EventsTableWrapper extends React.Component {
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
 							<Table changeLocation={(item, locationName)=>
 								this.props.changeLocation(item, locationName)} page={this.state.page} data={this.props.data} initSearch={searchTerm=>
-								this.props.initSearch(searchTerm)} searchTerm={this.state.searchTerm} />
+								this.props.initSearch(searchTerm)} />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
 						<Pagination lastPage={this.props.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.props.data.length}  />

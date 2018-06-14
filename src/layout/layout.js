@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Nav from './components/nav';
-import Header from './components/header';
-import Messeges from './components/messeges';
-import Events from './components/events';
+import Nav from '../components/nav/nav';
+import Header from '../components/header';
+import Messeges from '../components/messeges';
+import Events from '../components/events/events';
 import './css/layout.css';
 
 export default class Layout extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import EventDetails from './eventdetails';
-import EventVolunteers from './eventvolunteers';
+import EventDetails from './components/eventdetails';
+import EventVolunteers from './components/eventvolunteers';
 
 export default class ItemDetailsWrapper extends Component {
 	constructor(props){
