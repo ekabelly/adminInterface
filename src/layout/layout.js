@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Nav from '../components/nav/nav';
+import Nav from '../components/util/nav/nav';
 import Header from '../components/header';
 import Messeges from '../components/messeges';
 import Events from '../components/events/events';
 import './css/layout.css';
+import store from '../store';
 
 export default class Layout extends Component {
 	constructor(props){
@@ -12,6 +13,18 @@ export default class Layout extends Component {
 			showNav:false,
 			location:'events'
 		}
+	}
+
+	componentDidMount(){
+		store.subscribe(()=>{
+			const {location, nav} =store.getState();
+			if (location.location !== this.state.location) {
+				this.changeLocation(location.location);
+			}
+			if (nav.showNav !== this.state.showNav) {
+				this.navHandler(nav.showNav);
+			}
+		});
 	}
 
 	buildClass(){
@@ -52,7 +65,7 @@ export default class Layout extends Component {
 		        </div>
 	        </div>
 
-	        <Nav navHandler={bool=>this.navHandler(bool)} location={this.state.location} />
+	        <Nav location={this.state.location} />
 
         </main>
 

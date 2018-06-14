@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from '../../../resources/logo.svg';
+import logo from '../../../../resources/logo.svg';
 
-export default()=>{
+export default () => {
 	return (<div>
 		<div className="col-md-12 col-sm-12 col-xs-12 logoContainer padding">
             <div>

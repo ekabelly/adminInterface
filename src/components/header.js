@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import store from '../store';
 
-export default class Header extends Component {
-	myRouter(path){
-		this.props.changeLocation(path);
-	}
+const changeLocation = location =>
+	store.dispatch({type:"changeLocation", payload:location});
 
-	render(){
-		return (<div className="container-fluid">
+export default ()=>(<div className="container-fluid">
 					<div className="col-md-1 col-sm-1 col-xs-1 ">
 					</div>
 					<div className="col-md-2 col-xs-8 col-sm-4 container-fluid padding loginPanel">
@@ -26,10 +24,10 @@ export default class Header extends Component {
 						        		<li role="presentation">
 						        			<a href="#volunteers" className="navAnchor"> מתנדבים </a>
 						        		</li>
-						        		<li role="presentation" onClick={()=>this.myRouter('messeges')}>
+						        		<li role="presentation" onClick={()=>changeLocation('messeges')}>
 				        					<a href="#messeges" className="navAnchor"> הודעות כלליות </a>
 						        		</li>
-						        		<li role="presentation" onClick={()=>this.myRouter('events')}>
+						        		<li role="presentation" onClick={()=>changeLocation('events')}>
 				        					<a href="#events"  className="navAnchor"> אירועים </a>
 						        		</li>
 						        	</ul>
@@ -38,5 +36,3 @@ export default class Header extends Component {
 						</nav>
 					</div>
 				</div>);
-	}
-}

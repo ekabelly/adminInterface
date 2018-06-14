@@ -1,9 +1,9 @@
 import React from 'react';
 import './events.css';
-import axios from 'axios';
 import {limit} from '../../layout/layout.config';
 import EventsTableWrapper from '../table/eventstablewrapper';
 import ItemDetailsWrapper from '../details/itemdetailswrapper';
+import * as Util from '../../util/util';
 
 export default class Evens extends React.Component {
 	constructor(props){
@@ -20,7 +20,7 @@ export default class Evens extends React.Component {
 	}
 
 	componentWillMount(){
-		axios.get('https://jsonplaceholder.typicode.com/albums').then(res=>
+		Util.fetchData().then(res=>
 			this.setState({data:res.data, dispData:res.data, lastPage:this.makeLastPage(res.data)})).catch(e=>console.error(e));
 	}
 

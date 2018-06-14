@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LogoContainer from './components/logocontainer';
 import Hamburger from './components/hamburger';
+import store from '../../../store';
 
 export default class Nav extends Component {
 	constructor(props){
@@ -18,7 +19,7 @@ export default class Nav extends Component {
 
 	resizeHnadler(){
 		if (window.innerWidth <= 768) {
-			this.props.navHandler(false);
+			store.dispatch({type:'showNav', payload:false});
 			return this.setState({showNav:false});
 		}
 		return this.setState({showNav:true});
@@ -53,7 +54,7 @@ export default class Nav extends Component {
 	}
 
 	showNav(){
-		this.props.navHandler(!this.state.showNav);
+		store.dispatch({type:'showNav', payload:!this.state.showNav});
 		this.setState({showNav:!this.state.showNav});
 	}
 
