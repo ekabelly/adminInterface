@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './events.css';
-import {limit} from '../../layout/layout.config';
+import { limit } from '../../layout/layout.config';
 import EventsTableWrapper from '../table/eventstablewrapper';
 import ItemDetailsWrapper from '../details/itemdetailswrapper';
 import * as Util from '../../util/util';
 
-export default class Evens extends React.Component {
+class Events extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -24,10 +25,14 @@ export default class Evens extends React.Component {
 			this.setState({data:res.data, dispData:res.data, lastPage:this.makeLastPage(res.data)})).catch(e=>console.error(e));
 	}
 
+	componentDidMount(){
+		this.props.subscribe(()=>this.initSearch(this.props.getState().searchTerm));
+	}
+
 	locationHandler(item, locationName){
 		if (this.state.data.length >= 1) {
 			if (this.state.location.locationName === 'events'){
-				return <EventsTableWrapper initSearch={searchTerm=>this.initSearch(searchTerm)} changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} data={this.state.dispData} lastPage={this.state.lastPage} />;
+				return <EventsTableWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} data={this.state.dispData} lastPage={this.state.lastPage} />;
 			}
 			return <ItemDetailsWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} data={this.state.location.item} />;
 		}
@@ -62,3 +67,9 @@ export default class Evens extends React.Component {
 		</div>);
 	}
 }
+
+const mapStateToProps = store =>({
+		searchTerm:store.search.searchTerm
+	});
+
+export default connect(mapStateToProps)(Events);

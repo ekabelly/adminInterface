@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Nav from '../components/util/nav/nav';
+import NavContainer from '../components/util/nav/nav';
 import Header from '../components/header';
 import Messeges from '../components/messeges';
 import Events from '../components/events/events';
@@ -17,7 +17,7 @@ export default class Layout extends Component {
 
 	componentDidMount(){
 		store.subscribe(()=>{
-			const {location, nav} =store.getState();
+			const {location, nav} = store.getState();
 			if (location.location !== this.state.location) {
 				this.changeLocation(location.location);
 			}
@@ -65,7 +65,7 @@ export default class Layout extends Component {
 		        </div>
 	        </div>
 
-	        <Nav location={this.state.location} />
+	        <NavContainer location={this.state.location} />
 
         </main>
 

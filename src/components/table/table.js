@@ -23,7 +23,7 @@ export default class Table extends Component {
 						<td><Select extraClass="selectWidth" /> </td>
 						<td><Select extraClass="selectWidth" /> </td>
 						<td><Select extraClass="selectWidth" /></td>
-						<td><Search initSearch={searchTerm=>this.props.initSearch(searchTerm)} /> </td>
+						<td><Search /> </td>
 						<td> </td>
 					</tr>
 					<tr>

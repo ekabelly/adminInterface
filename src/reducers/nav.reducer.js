@@ -1,7 +1,6 @@
-export default (initState, action) =>{
-	const state = {...initState};
-	if (action.type === 'showNav') {
-		 state.showNav = action.payload;
+export default (state={showNav:true}, action) =>{
+	if (action.type === 'toggleNav') {
+		return {...state, showNav:action.payload};
 	}
 	return state;
 }

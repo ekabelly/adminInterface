@@ -27,8 +27,7 @@ export default class EventsTableWrapper extends React.Component {
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
 							<Table changeLocation={(item, locationName)=>
-								this.props.changeLocation(item, locationName)} page={this.state.page} data={this.props.data} initSearch={searchTerm=>
-								this.props.initSearch(searchTerm)} />
+								this.props.changeLocation(item, locationName)} page={this.state.page} data={this.props.data} />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
 						<Pagination lastPage={this.props.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.props.data.length}  />

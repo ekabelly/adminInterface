@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import LogoContainer from './components/logocontainer';
-import Hamburger from './components/hamburger';
-import store from '../../../store';
-
-export default class Nav extends Component {
+import HamburgerContainer from './components/hamburger';
+import { toggleNav } from '../../../actions/app.actions';
+ 
+class Nav extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			showNav:true
-		}
 		this.resizeHnadler = this.resizeHnadler.bind(this);
 	}
-
 	componentDidMount(){
 		this.resizeHnadler();
 		window.addEventListener('resize', this.resizeHnadler);
@@ -19,26 +16,25 @@ export default class Nav extends Component {
 
 	resizeHnadler(){
 		if (window.innerWidth <= 768) {
-			store.dispatch({type:'showNav', payload:false});
-			return this.setState({showNav:false});
+			return this.props.dispatch(toggleNav(false));
 		}
-		return this.setState({showNav:true});
+		return this.props.dispatch(toggleNav(true));
 	}
 
 	navHandler(){
-		if (this.state.showNav) {
+		if (this.props.nav) {
 			if (window.innerWidth > 768) {
 				return <LogoContainer />;
 			}
 			return this.hamburgerPlusNav();
 		}
-		return <Hamburger showNav={()=>this.showNav()} />;
+		return <HamburgerContainer />;
 	}
 
 	hamburgerPlusNav(){
 		return (<div>
 					<div className="col-xs-3 padding">
-						<Hamburger showNav={()=>this.showNav()} />
+						<HamburgerContainer />
 					</div>
 					<div className="col-xs-9 container-fluid padding">
 						<LogoContainer />
@@ -47,15 +43,14 @@ export default class Nav extends Component {
 	}
 
 	buildClass(){
-		if (!this.state.showNav) {
+		if (!this.props.nav) {
 			return ' col-xs-1';
 		}
 		return ' col-xs-5 container-fluid';
 	}
 
 	showNav(){
-		store.dispatch({type:'showNav', payload:!this.state.showNav});
-		this.setState({showNav:!this.state.showNav});
+		this.props.dispatch(toggleNav(!this.props.nav));
 	}
 
 	location(){
@@ -73,3 +68,10 @@ export default class Nav extends Component {
 		</div>);
 	}
 }
+
+const mapStateToProps = store =>({
+		nav:store.nav.showNav,
+		location:store.location.location
+	});
+
+export default connect(mapStateToProps)(Nav);

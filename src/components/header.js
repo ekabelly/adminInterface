@@ -1,8 +1,9 @@
 import React from 'react';
 import store from '../store';
+import { changeLocation } from '../actions/app.actions';
 
-const changeLocation = location =>
-	store.dispatch({type:"changeLocation", payload:location});
+const locationHandler = location =>
+	store.dispatch(changeLocation(location));
 
 export default ()=>(<div className="container-fluid">
 					<div className="col-md-1 col-sm-1 col-xs-1 ">
@@ -24,10 +25,10 @@ export default ()=>(<div className="container-fluid">
 						        		<li role="presentation">
 						        			<a href="#volunteers" className="navAnchor"> מתנדבים </a>
 						        		</li>
-						        		<li role="presentation" onClick={()=>changeLocation('messeges')}>
+						        		<li role="presentation" onClick={()=>locationHandler('messeges')}>
 				        					<a href="#messeges" className="navAnchor"> הודעות כלליות </a>
 						        		</li>
-						        		<li role="presentation" onClick={()=>changeLocation('events')}>
+						        		<li role="presentation" onClick={()=>locationHandler('events')}>
 				        					<a href="#events"  className="navAnchor"> אירועים </a>
 						        		</li>
 						        	</ul>
