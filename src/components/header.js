@@ -1,11 +1,14 @@
-import React from 'react';
-import store from '../store';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { changeLocation } from '../actions/app.actions';
 
-const locationHandler = location =>
-	store.dispatch(changeLocation(location));
+class Header extends Component {
+	locationHandler(location){
+		this.props.dispatch(changeLocation(location, '_LAYOUT'));
+	}
 
-export default ()=>(<div className="container-fluid">
+	render(){
+		return (<div className="container-fluid">
 					<div className="col-md-1 col-sm-1 col-xs-1 ">
 					</div>
 					<div className="col-md-2 col-xs-8 col-sm-4 container-fluid padding loginPanel">
@@ -25,10 +28,10 @@ export default ()=>(<div className="container-fluid">
 						        		<li role="presentation">
 						        			<a href="#volunteers" className="navAnchor"> מתנדבים </a>
 						        		</li>
-						        		<li role="presentation" onClick={()=>locationHandler('messeges')}>
+						        		<li role="presentation" onClick={()=>this.locationHandler('messeges')}>
 				        					<a href="#messeges" className="navAnchor"> הודעות כלליות </a>
 						        		</li>
-						        		<li role="presentation" onClick={()=>locationHandler('events')}>
+						        		<li role="presentation" onClick={()=>this.locationHandler('events')}>
 				        					<a href="#events"  className="navAnchor"> אירועים </a>
 						        		</li>
 						        	</ul>
@@ -37,3 +40,9 @@ export default ()=>(<div className="container-fluid">
 						</nav>
 					</div>
 				</div>);
+	}
+}
+
+const mapStateToProps = store =>({});
+
+export default connect(mapStateToProps)(Header);

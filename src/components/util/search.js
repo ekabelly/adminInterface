@@ -5,7 +5,6 @@ import { search } from '../../actions/app.actions';
 class Search extends Component {
 
 	initSearch(searchTerm){
-		//this.setState({searchTerm}, this.props.initSearch(searchTerm));
 		this.props.dispatch(search(searchTerm));
 	}
 

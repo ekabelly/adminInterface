@@ -31,13 +31,13 @@ class Pagination extends Component {
 		return (<div>
 			<nav aria-label="Page navigation">
 			  	<ul className="pagination-lg pagination">
-			    	<li className={page === 1 ? 'disabled' : ""}>
-				      	<a onClick={()=>this.pageHandler(1)} className="pointer" aria-label="Previous">
+			    	<li className={page === 1 ? 'disabled' : 'pointer'}>
+				      	<a onClick={()=>this.pageHandler(1)} aria-label="Previous">
 				        	<span aria-hidden="true">&laquo;</span>
 				      	</a>
 				    </li>
 				    <li className={page === 1 ? 'disabled' : 'pointer'}>
-				    	<a onClick={()=>this.pageHandler(page-1)} className="pointer">Previous</a>
+				    	<a onClick={()=>this.pageHandler(page-1)} >Previous</a>
 				    </li>
 			    	<li className={page === 1 ? 'active' : ''}>
 			    		<a onClick={()=>this.pageHandler(pageDisp-2)} className="pointer">{pageDisp-2}</a>
@@ -55,10 +55,10 @@ class Pagination extends Component {
 						<a onClick={()=>this.pageHandler(pageDisp+2)} className="pointer">{pageDisp+2}</a>
 					</li>
 			    	<li className={page === last ? 'disabled' : 'pointer'}>
-			    		<a onClick={()=>this.pageHandler(page+1)} className="pointer">Next</a>
+			    		<a onClick={()=>this.pageHandler(page+1)}>Next</a>
 			    	</li>
 			    	<li className={page === last ? 'disabled' : 'pointer'}>
-			      		<a onClick={()=>this.pageHandler(last)} className="pointer" aria-label="Next">
+			      		<a onClick={()=>this.pageHandler(last)} aria-label="Next">
 			        		<span aria-hidden="true">&raquo;</span>
 			      		</a>
 			    	</li>

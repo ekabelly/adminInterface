@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TableRow from './components/tablerow';
 import Select from '../util/select';
 import Search from '../util/search';
-import {limit} from '../../layout/layout.config';
+import { limit } from '../../layout/layout.config';
 
 class Table extends Component {
 	createTbody(){
@@ -42,8 +42,7 @@ class Table extends Component {
 }
 
 const mapStateToProps = store =>({
-		page:store.page.page,
-		data:store.data.res.data
+		page:store.page.page
 	});
 
 export default connect(mapStateToProps)(Table);

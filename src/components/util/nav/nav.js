@@ -69,9 +69,9 @@ class Nav extends Component {
 	}
 }
 
-const mapStateToProps = store =>({
-		nav:store.nav.showNav,
-		location:store.location.location
+const mapStateToProps = state =>({
+		nav:state.nav.showNav,
+		location:state.location.layoutLocation
 	});
 
 export default connect(mapStateToProps)(Nav);

@@ -3,8 +3,8 @@ export const toggleNav = bool =>({
 	payload:bool
 });
 
-export const changeLocation = location => ({
-	type:'changeLocation',
+export const changeLocation = (location, container) => ({
+	type:'CHANGE_LOCATION'+container,
 	payload:location
 });
 

@@ -5,28 +5,15 @@ import EventsTableWrapper from '../table/eventstablewrapper';
 import ItemDetailsWrapper from '../details/itemdetailswrapper';
 
 class Events extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			location:{
-				item:{},
-				locationName:'events'
-			}
-		}
-	}
 
-	locationHandler(item, locationName){
+	locationHandler(){
 		if (this.props.data.fetched) {
-			if (this.state.location.locationName === 'events'){
-				return <EventsTableWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} />;
+			if (this.props.location.locationName === 'events'){
+				return <EventsTableWrapper />;
 			}
-			return <ItemDetailsWrapper changeLocation={(item, locationName)=>this.changeLocation(item, locationName)} data={this.state.location.item} />;
+			return <ItemDetailsWrapper />;
 		}
 		return <p> pending... </p>;
-	}
-
-	changeLocation(item, locationName){
-		this.setState({location:{item, locationName}});
 	}
 
 	render(){
@@ -36,8 +23,9 @@ class Events extends React.Component {
 	}
 }
 
-const mapStateToProps = store =>({
-		data:store.data
+const mapStateToProps = state =>({
+		data:state.data,
+		location:state.location.eventsLocation
 	});
 
 export default connect(mapStateToProps)(Events);
