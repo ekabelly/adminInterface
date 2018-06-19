@@ -12,3 +12,13 @@ export const search = searchTerm =>({
 	type:'search',
 	payload:searchTerm
 });
+
+export const changePage = page => ({
+	type:'CHANGE_PAGE',
+	payload:page
+});
+
+export const lastPage = length =>({
+	type:'LAST_PAGE',
+	payload:length
+})

@@ -1,39 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Table from './table';
 import Pagination from './components/pagination';
 
-export default class EventsTableWrapper extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			page:1
+class EventsTableWrapper extends React.Component {  
+	initSearch(data, searchTerm){
+		if (searchTerm === '') {
+			return data;
 		}
+		return data.filter(x=>x.id === Number(searchTerm) || x.userId === Number(searchTerm) || x.title.toLowerCase().indexOf(searchTerm) !== -1);
 	}
 
-	changePage(change){
-		if (this.state.page === 1 && change < 1 ) {
-			return;
-		}
-		if (this.state.page === this.props.lastPage && change > this.props.lastPage) {
-			return;
-		}
-		this.setState({page:change});
-	}
+
 
 	render(){
+		const { data } = this.props.data.res;
 		return (<div className="container-fluid tableContainer">
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-						<Pagination lastPage={this.props.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.props.data.length}  />
+						<Pagination changePage={change=>this.changePage(change)} dataCount={this.props.data.length}  />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
 							<Table changeLocation={(item, locationName)=>
-								this.props.changeLocation(item, locationName)} page={this.state.page} data={this.props.data} />
+								this.props.changeLocation(item, locationName)} data={this.initSearch(data, this.props.searchTerm)} />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-						<Pagination lastPage={this.props.lastPage} changePage={change=>this.changePage(change)} page={this.state.page} dataCount={this.props.data.length}  />
+						<Pagination changePage={change=>this.changePage(change)}  dataCount={this.props.data.length}  />
 					</div>
 				</div>);
 	}
 }		
 
-			
+const mapStateToProps = store =>({
+		searchTerm:store.search.searchTerm,
+		data:store.data
+	});
+
+export default connect(mapStateToProps)(EventsTableWrapper);
