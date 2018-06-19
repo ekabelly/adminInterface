@@ -12,10 +12,7 @@ class Pagination extends Component {
 	pageHandler(change){
 		let { page } = this.props.page;
 		const { last } = this.props.page;
-		if (page === 1 && change < 1 ) {
-			return;
-		}
-		if (page === last && change > last) {
+		if ((page === 1 && change < 1)  ||  (page === change)  ||  (page === last && change > last)) {
 			return;
 		}
 		return this.props.dispatch(changePage(change));
@@ -24,20 +21,21 @@ class Pagination extends Component {
 	render(){
 		const { page } = this.props.page;
 		let pageDisp = page;
-		const { last } = this.props.page;
-		if (pageDisp === 1 || pageDisp === 2) pageDisp = 3;
+		let { last } = this.props.page;
+		if (last < 5 ) last = 5;
+		if (page === 1 || page === 2) pageDisp = 3;
 		if (pageDisp === last || pageDisp === last - 1) pageDisp = last - 2;
 
 		return (<div>
 			<nav aria-label="Page navigation">
 			  	<ul className="pagination-lg pagination">
 			    	<li className={page === 1 ? 'disabled' : 'pointer'}>
-				      	<a onClick={()=>this.pageHandler(1)} aria-label="Previous">
+				      	<a onClick={()=>this.pageHandler(1)} aria-label="First">
 				        	<span aria-hidden="true">&laquo;</span>
 				      	</a>
 				    </li>
 				    <li className={page === 1 ? 'disabled' : 'pointer'}>
-				    	<a onClick={()=>this.pageHandler(page-1)} >Previous</a>
+				    	<a onClick={()=>this.pageHandler(page-1)} >הקודם</a>
 				    </li>
 			    	<li className={page === 1 ? 'active' : ''}>
 			    		<a onClick={()=>this.pageHandler(pageDisp-2)} className="pointer">{pageDisp-2}</a>
@@ -54,11 +52,11 @@ class Pagination extends Component {
 					<li className={page === last ? 'active' : ''}>
 						<a onClick={()=>this.pageHandler(pageDisp+2)} className="pointer">{pageDisp+2}</a>
 					</li>
-			    	<li className={page === last ? 'disabled' : 'pointer'}>
-			    		<a onClick={()=>this.pageHandler(page+1)}>Next</a>
+			    	<li className={page === last || page === this.props.page.last ? 'disabled' : 'pointer'}>
+			    		<a onClick={()=>this.pageHandler(page+1)}>הבא</a>
 			    	</li>
-			    	<li className={page === last ? 'disabled' : 'pointer'}>
-			      		<a onClick={()=>this.pageHandler(last)} aria-label="Next">
+			    	<li className={page === last || page === this.props.page.last ? 'disabled' : 'pointer'}>
+			      		<a onClick={()=>this.pageHandler(this.props.page.last)} aria-label="Last">
 			        		<span aria-hidden="true">&raquo;</span>
 			      		</a>
 			    	</li>

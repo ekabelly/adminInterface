@@ -5,7 +5,6 @@ import Header from '../components/header';
 import Messeges from '../components/messeges';
 import Events from '../components/events/events';
 import './css/layout.css';
-import store from '../store';
 
 class Layout extends Component {
 	buildClass(){
