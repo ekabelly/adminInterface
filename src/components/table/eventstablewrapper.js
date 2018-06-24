@@ -22,14 +22,13 @@ class EventsTableWrapper extends React.Component {
 		const dispData = this.searchHandler(this.props.data.res.data, this.props.searchTerm);
 		return (<div className="container-fluid tableContainer">
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-						<Pagination changePage={change=>this.changePage(change)} />
+						<Pagination />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-							<Table changeLocation={(item, locationName)=>
-								this.props.changeLocation(item, locationName)} data={dispData} />
+							<Table data={dispData} />
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 container-fluid padding">
-						<Pagination changePage={change=>this.changePage(change)} />
+						<Pagination />
 					</div>
 				</div>);
 	}

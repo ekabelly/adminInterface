@@ -1,0 +1,32 @@
+.black-text {
+	color: black;
+}
+
+.radio-label, label, .timeInput, #start_date, .timeLabel {
+	font-size: 2rem;
+}
+
+.form-title {
+	font-size: 4rem;
+	text-align: right;
+}
+
+#volun_num {
+	width: 100%;
+}
+
+.checkbox-label {
+	padding-right: 10px;
+}
+
+.form-label-right {
+	text-align: right !important;
+}
+
+img {
+	max-width: 100%;
+}
+
+#start_date {
+	width: 90%;
+}

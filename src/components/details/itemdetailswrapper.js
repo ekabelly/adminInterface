@@ -31,13 +31,11 @@ class ItemDetailsWrapper extends Component {
 				<div className="col-md-10 container-fluid">
 					<div className="row">
 						<div className="col-md-1 col-xs-12">
-							<div>
-								<button onClick={()=>this.warapperLocation()} type="button" className="btn btn-default btn-md hideOnMd"> חזרה לאירועים 
-									<span className="glyphicon glyphicon-triangle-right"></span>
-								</button>
-							</div>
+							<button onClick={()=>this.warapperLocation()} type="button" className="btn btn-default btn-md hidden-md hidden-lg visible-sm visible-xs center-block"> חזרה לאירועים 
+								<span className="glyphicon glyphicon-triangle-right"></span>
+							</button>
 						</div>
-						<div className="col-md-10 container-fluid padding">
+						<div className="col-md-10 col-xs-12 container-fluid padding">
 							<div onClick={()=>this.changeComponentLocation('volunteers')} className={"pointer hoverBlack col-md-6 col-sm-6 col-xs-6 tab "+this.tabHandler('volunteers')}>מתנדבים</div>
 							<div onClick={()=>this.changeComponentLocation('eventDetails')} className={"pointer hoverBlack col-md-6 col-sm-6 col-xs-6 tab "+this.tabHandler('eventDetails')}>פרטי אירוע</div>
 							<div className="col-md-12 item DetailsWrapper">
@@ -46,7 +44,7 @@ class ItemDetailsWrapper extends Component {
 						</div>
 						<div className="col-md-1">
 							<div>
-								<button onClick={()=>this.warapperLocation()} type="button" className="btn btn-default btn-md hideOnXs"> חזרה לאירועים 
+								<button onClick={()=>this.warapperLocation()} type="button" className="btn btn-default btn-md hidden-xs"> חזרה לאירועים 
 									<span className="glyphicon glyphicon-triangle-right"></span>
 								</button>
 							</div>

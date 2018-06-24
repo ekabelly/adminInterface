@@ -21,4 +21,4 @@ export const changePage = page => ({
 export const lastPage = length =>({
 	type:'LAST_PAGE',
 	payload:length
-})
+});

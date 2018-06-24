@@ -6,7 +6,6 @@ export default (state={
 		},
 		eventDetailsLocation:'eventDetails'
 	}, {type, payload}) => {
-	console.log(type)
 	if (type === 'CHANGE_LOCATION_LAYOUT') {
 		return {...state, layoutLocation:payload};
 	}
@@ -19,6 +18,15 @@ export default (state={
 	}
 	if (type === 'CHANGE_LOCATION_EVENT_DETAILS') {
 		return {...state,  eventDetailsLocation:payload}
+	}
+	if (type === 'CREATE_NEW_EVENT') {
+		return {...state,
+			eventsLocation:{
+				locationName:'itemDetails',
+				item:{}
+			},
+			eventDetailsLocation:'eventDetails'
+		}
 	}
 	return state;
 }

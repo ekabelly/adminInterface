@@ -74,16 +74,6 @@ table {
 	text-align: right !important;
 }
 
-.hideOnMd {
-  	display: none;
- }
-
-@media screen and (max-width: 768px) {
-.hideOnMd {
-  	display: inline;
-  }
-
-  .hideOnXs {
-  	display: none;
-  }
+.highet-test {
+	height: 400px;
 }

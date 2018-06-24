@@ -1,4 +1,3 @@
-//import * as Util from '../util/util';
 import axios from 'axios';
 
 export const fetchData = () => ({
